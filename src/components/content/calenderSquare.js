@@ -29,7 +29,7 @@ export default class CalenderSquare extends Component {
     }
 
     queryAPI() {
-        fetch(`http://127.0.0.1:5000/calendar-inputs/${this.props.date}/${this.props.month}/${this.props.year}`, {
+        fetch(`https://tc-react-calendar-api.herokuapp.com/127.0.0.1:5000/calendar-inputs/${this.props.date}/${this.props.month}/${this.props.year}`, {
                 method: "GET"
             })
             .then(response => response.json())
@@ -57,23 +57,22 @@ export default class CalenderSquare extends Component {
     handleSubmit() {
         let url
         let method
-        let shouldRun = true
+      
 
         if (this.state.value.length > 0 && this.state.postID == undefined) {
-            let url = "http://127.0.0.1:5000/calendar-input/post"
+            let url = "https://tc-react-calendar-api.herokuapp.com/127.0.0.1:5000/calendar-input/post"
             let method = "POST"
         }
         else if (this.state.value.length > 0 && this.state.postID) {
-            let url = `http://127.0.0.1:5000/calendar_inputs/update/${this.state.postID}`
+            let url = `https://tc-react-calendar-api.herokuapp.com/127.0.0.1:5000/calendar_inputs/update/${this.state.postID}`
             let method = "PUT"
         }
         else if (this.state.value.length > 0 && this.state.postID) {
-            let url = `http://127.0.0.1:5000/calendar_inputs/delete/${this.state.postID}`
+            let url = `https://tc-react-calendar-api.herokuapp.com/127.0.0.1:5000/calendar_inputs/delete/${this.state.postID}`
             let method = "DELETE"
         }
-        else {
-            shouldRun = false
-        }
+       
+
         fetch(url, {
             method: method,
             headers: {
